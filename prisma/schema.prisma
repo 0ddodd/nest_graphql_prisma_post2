@@ -19,17 +19,29 @@ model Movie {
   releaseDate DateTime
   genre String
   director String
+  collections MovieInCollection[]
 }
 
 model User {
   id Int @id @default(autoincrement())
-  name String @unique
+  name String
   email String @unique
   createdAt DateTime @default(now())
+  collection Collection?
 }
 
-// model Collection {
-//   id Int @id @default(autoincrement())
-//   userId 
-//   movies
-// }
+model Collection {
+  id Int @id @default(autoincrement())
+  userId Int @unique 
+  user User @relation(fields: [userId], references: [id])
+  movies MovieInCollection[]
+}
+
+model MovieInCollection {
+  movieId      Int
+  collectionId Int
+  Movie        Movie      @relation(fields: [movieId], references: [id])
+  Collection   Collection @relation(fields: [collectionId], references: [id])
+
+  @@id([movieId, collectionId])
+}

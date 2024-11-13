@@ -5,8 +5,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
 import { MovieModule } from './movie/movie.module';
-import { UserModule } from './user/user.module';
-import { PrismaService } from './prisma/prisma.service';
+import { CollectionModule } from './collection/collection.module';
 
 @Module({
   imports: [
@@ -14,11 +13,14 @@ import { PrismaService } from './prisma/prisma.service';
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       sortSchema: true
+      // autoSchemaFile: false,
+      // typePaths: ['./**/*.gql'],
+      // installSubscriptionHandlers: true,
     }),
     MovieModule,
-    UserModule
+    CollectionModule
   ],
   controllers: [AppController],
-  providers: [AppService, PrismaService],
+  providers: [AppService],
 })
 export class AppModule {}

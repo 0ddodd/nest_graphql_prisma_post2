@@ -3,55 +3,34 @@
 # ------------------------------------------------------
 
 input CreateMovieInput {
-  title: String!
   director: String
   genre: String
   releaseDate: String
-}
-
-input CreateUserInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  title: String!
 }
 
 type Movie {
-  director: String!
-  genre: String!
-  id: Float!
-  releaseDate: String!
+  director: String
+  genre: String
+  id: Int!
+  releaseDate: String
   title: String!
 }
 
 type Mutation {
   createMovie(createMovieInput: CreateMovieInput!): Movie!
-  createUser(createUserInput: CreateUserInput!): User!
   removeMovie(id: Int!): Movie!
-  removeUser(id: Int!): User!
   updateMovie(updateMovieInput: UpdateMovieInput!): Movie!
-  updateUser(updateUserInput: UpdateUserInput!): User!
 }
 
 type Query {
   movie(id: Int!): Movie!
-  movies(): [Movie!]
-  user(id: Int!): User!
 }
 
 input UpdateMovieInput {
-  id: Float!
-  title: String!
   director: String
   genre: String
-  releaseDate: String
-}
-
-input UpdateUserInput {
-  """Example field (placeholder)"""
-  exampleField: Int
   id: Int!
-}
-
-type User {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  releaseDate: String
+  title: String!
 }

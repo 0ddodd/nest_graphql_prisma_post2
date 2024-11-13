@@ -2,18 +2,18 @@ import { ObjectType, Field, Int } from '@nestjs/graphql';
 
 @ObjectType()
 export class Movie {
-  @Field()
+  @Field(()=>Int)
   id: number;
 
   @Field()
   title: string;
 
-  @Field()
-  releaseDate: string;
+  @Field({nullable: true})
+  releaseDate?: string;
 
-  @Field()
-  genre: string;
+  @Field({nullable: true})
+  genre?: string;
 
-  @Field()
-  director: string;
+  @Field({nullable: true})
+  director?: string;
 }
